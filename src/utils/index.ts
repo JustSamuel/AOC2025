@@ -29,3 +29,19 @@
  *     import { myUtil } from '../utils'
  *
  */
+
+export {
+  Direction,
+  DirectionVectors,
+  Cardinal,
+  Compass,
+  DirectionVectorMap,
+  CardinalVectors,
+  CompassVectors,
+} from "./directions.js";
+
+export {
+  parse as gridParse,
+  forEachCell as gridForEachCell,
+  inGrid as gridInGrid,
+} from "./grid.js";

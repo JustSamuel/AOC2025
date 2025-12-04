@@ -17,7 +17,9 @@
   "devDependencies": {
     "@types/node": "^16.11.6",
     "aocrunner": "^1.10.0",
-    "prettier": "^2.8.0"
+    "prettier": "^2.8.0",
+    "terminal-kit": "^3.1.2",
+    "terminalizer": "^0.12.0"
   },
   "dependencies": {},
   "engines": {
