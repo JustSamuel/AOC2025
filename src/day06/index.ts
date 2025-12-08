@@ -2,13 +2,13 @@ import run from "aocrunner";
 
 interface Problem {
   numbers: number[];
-  type: '*' | '+';
+  type: "*" | "+";
 }
 
 const parseInput = (rawInput: string, part2 = false): Problem[] => {
   const lines = rawInput.trimEnd().split("\n");
 
-  const cols = Math.max(...lines.map(line => line.length));
+  const cols = Math.max(...lines.map((line) => line.length));
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].length < cols) lines[i] = lines[i].padEnd(cols, " ");
   }
@@ -21,16 +21,25 @@ const parseInput = (rawInput: string, part2 = false): Problem[] => {
     // Is there a number in this column
     let any = false;
     for (let r = 0; r <= height; r++) {
-      if (lines[r][col] !== " ") { any = true; break; }
+      if (lines[r][col] !== " ") {
+        any = true;
+        break;
+      }
     }
-    if (!any) { col++; continue; }
+    if (!any) {
+      col++;
+      continue;
+    }
 
     // Find right end of block
     let end = col;
     while (end + 1 < cols) {
       let next = false;
       for (let r = 0; r <= height; r++) {
-        if (lines[r][end + 1] !== " ") { next = true; break; }
+        if (lines[r][end + 1] !== " ") {
+          next = true;
+          break;
+        }
       }
       if (!next) break;
       end++;
@@ -55,7 +64,7 @@ const parseInput = (rawInput: string, part2 = false): Problem[] => {
     }
 
     const op = lines[height].slice(col, end + 1).trim();
-    problems.push({ numbers: currentNumbers, type: op as '+' | '*' });
+    problems.push({ numbers: currentNumbers, type: op as "+" | "*" });
 
     col = end + 1;
   }
@@ -64,10 +73,10 @@ const parseInput = (rawInput: string, part2 = false): Problem[] => {
 };
 
 const evaluate = (problems: Problem[]) => {
-  return problems.map(problem => {
+  return problems.map((problem) => {
     const { numbers, type } = problem;
-    if (type === '+') return numbers.reduce((acc, num) => acc + num, 0);
-    if (type === '*') return numbers.reduce((acc, num) => acc * num, 1);
+    if (type === "+") return numbers.reduce((acc, num) => acc + num, 0);
+    if (type === "*") return numbers.reduce((acc, num) => acc * num, 1);
     return 0;
   });
 };

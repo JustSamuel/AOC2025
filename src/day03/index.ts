@@ -1,7 +1,10 @@
 import run from "aocrunner";
 
 const parseInput = (rawInput: string) => {
-  return rawInput.trim().split("\n").map((line) => line.split("").map(Number));
+  return rawInput
+    .trim()
+    .split("\n")
+    .map((line) => line.split("").map(Number));
 };
 
 const findMax = (bank: number[], batteryCount: number): number => {
@@ -13,7 +16,7 @@ const findMax = (bank: number[], batteryCount: number): number => {
   for (let pos = 0; pos < k; pos++) {
     const remaining = k - pos - 1;
     const end = n - remaining;
-    const slice = bank.slice(start, end)
+    const slice = bank.slice(start, end);
 
     const digit = Math.max(...slice);
     const index = start + slice.indexOf(digit);

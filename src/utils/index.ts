@@ -45,3 +45,7 @@ export {
   forEachCell as gridForEachCell,
   inGrid as gridInGrid,
 } from "./grid.js";
+
+export {
+  DSU,
+} from "./dsu.js";

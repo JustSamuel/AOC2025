@@ -20,7 +20,9 @@ export const DirectionVectorMap: Record<Direction, [number, number]> = {
   [Direction.NORTHWEST]: [-1, -1],
 };
 
-export const DirectionVectors = (directions: Direction[]): [number, number][] => {
+export const DirectionVectors = (
+  directions: Direction[],
+): [number, number][] => {
   return directions.map((dir) => DirectionVectorMap[dir]);
 };
 
@@ -43,10 +45,9 @@ export const Compass: Direction[] = [
 ];
 
 export const CardinalVectors: [number, number][] = Cardinal.map(
-  (dir) => DirectionVectorMap[dir]
+  (dir) => DirectionVectorMap[dir],
 );
 
 export const CompassVectors: [number, number][] = Compass.map(
-  (dir) => DirectionVectorMap[dir]
+  (dir) => DirectionVectorMap[dir],
 );
-

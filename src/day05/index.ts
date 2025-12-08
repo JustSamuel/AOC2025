@@ -22,7 +22,6 @@ const part1 = (rawInput: string) => {
   return ids.filter(fresh).length;
 };
 
-
 const merge = (ranges: { start: number; end: number }[]) => {
   ranges.sort((a, b) => a.start - b.start);
   const merged: { start: number; end: number }[] = [];
@@ -48,7 +47,7 @@ const part2 = (rawInput: string) => {
 
   let count = 0;
   merged.forEach(({ start, end }) => {
-    count += (end - start + 1);
+    count += end - start + 1;
   });
 
   return count;

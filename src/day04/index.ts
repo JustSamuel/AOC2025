@@ -1,5 +1,10 @@
 import run from "aocrunner";
-import {CompassVectors, gridForEachCell, gridInGrid, gridParse} from "../utils/index.js";
+import {
+  CompassVectors,
+  gridForEachCell,
+  gridInGrid,
+  gridParse,
+} from "../utils/index.js";
 
 function findBails(grid: string[][]): Set<{ r: number; c: number }> {
   const rolls = new Set<{ r: number; c: number }>();
@@ -8,7 +13,7 @@ function findBails(grid: string[][]): Set<{ r: number; c: number }> {
     let count = 0;
 
     for (const [dr, dc] of CompassVectors) {
-      const nr = row  + dr;
+      const nr = row + dr;
       const nc = column + dc;
       if (!gridInGrid(grid, nr, nc)) continue;
       if (grid[nr][nc] === "@") count++;
@@ -26,7 +31,6 @@ const part1 = (rawInput: string) => {
   const grid = gridParse(rawInput);
   return findBails(grid).size;
 };
-
 
 const part2 = (rawInput: string) => {
   const grid = gridParse(rawInput);
