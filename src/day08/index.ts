@@ -1,5 +1,5 @@
 import run from "aocrunner";
-import { DSU } from "../utils";
+import { DSU } from "../utils/index.js";
 
 type Pt = { x: number; y: number; z: number };
 const parseInput = (raw: string) => {
