@@ -1,5 +1,10 @@
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
-import { CompassVectors, gridForEachCell, gridInGrid, gridParse } from "../utils/index.js";
+import {
+  CompassVectors,
+  gridForEachCell,
+  gridInGrid,
+  gridParse,
+} from "../utils/index.js";
 // @ts-ignore - pngjs types may not be properly resolved
 import { PNG } from "pngjs";
 
@@ -40,7 +45,7 @@ const createFrame = (
   grid: string[][],
   iteration: number,
   totalRemoved: number,
-  toRemove: Set<{ r: number; c: number }>
+  toRemove: Set<{ r: number; c: number }>,
 ): PNG => {
   const cols = grid[0].length;
   const rows = grid.length;
@@ -121,7 +126,7 @@ const setPixel = (
   width: number,
   x: number,
   y: number,
-  color: [number, number, number]
+  color: [number, number, number],
 ) => {
   const idx = (y * width + x) * 4;
   data[idx] = color[0];
@@ -155,7 +160,10 @@ const renderGif = async (rawInput: string, outputPath: string) => {
 
   // Initial frame
   const initialFrame = createFrame(grid, iteration, total, toRemove);
-  const initialPath = `${framesDir}/frame-${String(frameNum++).padStart(4, "0")}.png`;
+  const initialPath = `${framesDir}/frame-${String(frameNum++).padStart(
+    4,
+    "0",
+  )}.png`;
   writeFileSync(initialPath, PNG.sync.write(initialFrame));
   frames.push(initialPath);
 
@@ -164,7 +172,10 @@ const renderGif = async (rawInput: string, outputPath: string) => {
 
     // Frame showing what will be removed
     const beforeFrame = createFrame(grid, iteration, total, toRemove);
-    const beforePath = `${framesDir}/frame-${String(frameNum++).padStart(4, "0")}.png`;
+    const beforePath = `${framesDir}/frame-${String(frameNum++).padStart(
+      4,
+      "0",
+    )}.png`;
     writeFileSync(beforePath, PNG.sync.write(beforeFrame));
     frames.push(beforePath);
 
@@ -176,7 +187,10 @@ const renderGif = async (rawInput: string, outputPath: string) => {
 
     // Frame after removal
     const afterFrame = createFrame(grid, iteration, total, toRemove);
-    const afterPath = `${framesDir}/frame-${String(frameNum++).padStart(4, "0")}.png`;
+    const afterPath = `${framesDir}/frame-${String(frameNum++).padStart(
+      4,
+      "0",
+    )}.png`;
     writeFileSync(afterPath, PNG.sync.write(afterFrame));
     frames.push(afterPath);
 
@@ -186,7 +200,10 @@ const renderGif = async (rawInput: string, outputPath: string) => {
 
   // Final frame
   const finalFrame = createFrame(grid, iteration, total, toRemove);
-  const finalPath = `${framesDir}/frame-${String(frameNum++).padStart(4, "0")}.png`;
+  const finalPath = `${framesDir}/frame-${String(frameNum++).padStart(
+    4,
+    "0",
+  )}.png`;
   writeFileSync(finalPath, PNG.sync.write(finalFrame));
   frames.push(finalPath);
 
@@ -194,9 +211,13 @@ const renderGif = async (rawInput: string, outputPath: string) => {
   console.log(`Total cells removed: ${total}`);
   console.log(`Iterations: ${iteration}`);
   console.log(`\nTo create GIF, use ImageMagick:`);
-  console.log(`magick convert -delay 50 -loop 0 ${framesDir}/frame-*.png ${outputPath}`);
+  console.log(
+    `magick convert -delay 50 -loop 0 ${framesDir}/frame-*.png ${outputPath}`,
+  );
   console.log(`\nOr use ffmpeg:`);
-  console.log(`ffmpeg -framerate 2 -i ${framesDir}/frame-%04d.png ${outputPath}`);
+  console.log(
+    `ffmpeg -framerate 2 -i ${framesDir}/frame-%04d.png ${outputPath}`,
+  );
 };
 
 // Read input file

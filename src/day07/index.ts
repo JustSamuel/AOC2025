@@ -50,7 +50,8 @@ const part2 = (rawInput: string) => {
       if (c < 0 || c >= grid[r].length) continue;
       if (grid[r][c] === "^") {
         if (c > 0) next.set(c - 1, (next.get(c - 1) || 0) + cnt);
-        if (c < grid[r].length - 1) next.set(c + 1, (next.get(c + 1) || 0) + cnt);
+        if (c < grid[r].length - 1)
+          next.set(c + 1, (next.get(c + 1) || 0) + cnt);
       } else if (grid[r][c] === "." || grid[r][c] === "|") {
         next.set(c, (next.get(c) || 0) + cnt);
       }

@@ -46,6 +46,4 @@ export {
   inGrid as gridInGrid,
 } from "./grid.js";
 
-export {
-  DSU,
-} from "./dsu.js";
+export { DSU } from "./dsu.js";
